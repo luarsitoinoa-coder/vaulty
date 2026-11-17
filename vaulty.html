@@ -64,7 +64,6 @@
 
         <!-- ==================== 1. VISTA INICIO ==================== -->
         <section id="view-inicio" class="relative z-10 px-4 pt-5 space-y-5">
-            <!-- Header Top con indicador de nube -->
             <div class="flex justify-between items-center">
                 <div id="cloud-status-badge" onclick="openCloudConfigModal()" class="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#14261c] border border-white/10 text-[11px] font-semibold text-gray-300">
                     <span id="cloud-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
@@ -72,10 +71,11 @@
                 </div>
 
                 <div class="flex items-center gap-2.5">
-                    <button onclick="showToast('No tienes notificaciones nuevas')" class="w-10 h-10 rounded-full bg-[#1a2b22] hover:bg-[#23382d] flex items-center justify-center text-white transition">
+                    <button onclick="openNotificationsModal()" class="w-10 h-10 rounded-full bg-[#1a2b22] hover:bg-[#23382d] flex items-center justify-center text-white transition relative">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
+                        <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-emeraldAccent"></span>
                     </button>
                     <button onclick="openView('configuracion')" class="w-10 h-10 rounded-full bg-[#1a2b22] hover:bg-[#23382d] flex items-center justify-center text-white transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -86,7 +86,6 @@
                 </div>
             </div>
 
-            <!-- Saludo -->
             <div class="text-center">
                 <h1 class="text-[20px] font-semibold tracking-tight text-white">Hola, <span id="user-greeting-name">Eduarly</span></h1>
             </div>
@@ -94,37 +93,22 @@
             <!-- Selector de Período -->
             <div class="bg-[#1b2922] p-1 rounded-full flex items-center justify-between text-[13px] font-medium">
                 <button onclick="setPeriod('ayer', this)" class="period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition">Ayer</button>
-                <button onclick="setPeriod('hoy', this)" class="period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition">Hoy</button>
+                <button onclick="setPeriod('hoy', this)" class="period-btn flex-1 py-2 rounded-full bg-white text-black font-semibold shadow transition">Hoy</button>
                 <button onclick="setPeriod('semana', this)" class="period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition">Semana</button>
                 <button onclick="setPeriod('mes', this)" class="period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition">Mes</button>
-                <button onclick="setPeriod('año', this)" class="period-btn flex-1 py-2 rounded-full bg-white text-black font-semibold shadow transition">Año</button>
+                <button onclick="setPeriod('año', this)" class="period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition">Año</button>
             </div>
 
-            <!-- Total Gastado + Switch Moneda -->
+            <!-- Total Gastado -->
             <div class="text-center pt-1">
-                <p id="period-label" class="text-[14px] text-gray-200 font-medium">Este año has gastado</p>
-                <div id="hero-amount" class="text-[40px] leading-tight font-extrabold tracking-tight text-white mt-1">RD$145.00</div>
+                <p id="period-label" class="text-[14px] text-gray-200 font-medium">Hoy has gastado</p>
+                <div id="hero-amount" class="text-[40px] leading-tight font-extrabold tracking-tight text-white mt-1">RD$1,200.00</div>
+                <p id="hero-subtext" class="text-xs text-emeraldAccent mt-1 font-medium">Has gastado RD$825.00 (220%) más que ayer</p>
                 
                 <div class="inline-flex items-center bg-[#1b2922] p-1 rounded-full mt-3">
                     <button onclick="setCurrency('RD$')" id="curr-btn-rd" class="px-4 py-1 rounded-full text-[13px] font-bold bg-white text-[#0c3b24] transition">RD$</button>
                     <button onclick="setCurrency('US$')" id="curr-btn-us" class="px-4 py-1 rounded-full text-[13px] font-semibold text-gray-300 hover:text-white transition">US$</button>
                 </div>
-            </div>
-
-            <!-- Gráfica de Curva -->
-            <div class="relative h-28 w-full flex items-end justify-center pt-2">
-                <svg class="w-full h-24 overflow-visible" viewBox="0 0 360 90">
-                    <defs>
-                        <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#9ca3af" stop-opacity="0.45"/>
-                            <stop offset="100%" stop-color="#07130d" stop-opacity="0.0"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M 0,72 L 185,72 C 205,72 212,18 228,18 C 242,18 248,72 256,72 L 256,88 L 0,88 Z" fill="url(#curveGrad)"/>
-                    <path d="M 0,72 L 185,72 C 205,72 212,18 228,18 C 242,18 248,72 256,72" fill="none" stroke="#9ca3af" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="256" cy="72" r="10" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5"/>
-                    <circle cx="256" cy="72" r="4" fill="#9ca3af"/>
-                </svg>
             </div>
 
             <!-- Tarjeta: RESUMEN DE ESTE MES -->
@@ -133,8 +117,6 @@
 
                 <div class="grid grid-cols-2 gap-4 relative">
                     <div class="absolute left-1/2 top-1 bottom-1 w-[1px] bg-white/[0.08] -translate-x-1/2"></div>
-
-                    <!-- Ingresos -->
                     <div class="pr-2">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -147,10 +129,9 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/></svg>
                             </button>
                         </div>
-                        <p id="month-income-text" class="text-[13px] text-gray-400 mt-3">Sin ingresos</p>
+                        <p id="month-income-text" class="text-[15px] font-bold text-emeraldAccent mt-3">RD$53,950.00</p>
                     </div>
 
-                    <!-- Gastos -->
                     <div class="pl-2">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -163,7 +144,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/></svg>
                             </button>
                         </div>
-                        <p id="month-expense-text" class="text-[13px] text-gray-400 mt-3">No hay registros</p>
+                        <p id="month-expense-text" class="text-[15px] font-bold text-white mt-3">RD$2,155.00</p>
                     </div>
                 </div>
 
@@ -174,12 +155,11 @@
                         <span class="w-4 h-4 rounded-full border border-gray-400 text-[10px] flex items-center justify-center text-gray-300">i</span>
                     </div>
                     <div class="flex items-center gap-2.5 mt-1.5">
-                        <span id="available-dot" class="w-2.5 h-2.5 rounded-full bg-barYellow"></span>
-                        <span id="available-amount" class="text-[26px] font-extrabold tracking-tight text-white">RD$0.00</span>
+                        <span id="available-dot" class="w-2.5 h-2.5 rounded-full bg-emeraldAccent"></span>
+                        <span id="available-amount" class="text-[26px] font-extrabold tracking-tight text-white">RD$51,795.00</span>
                     </div>
-                    <div id="available-warning" class="flex items-center gap-2 mt-2 text-barYellow text-[12.5px] font-medium">
-                        <span class="w-4 h-4 rounded-full border border-barYellow flex items-center justify-center text-[10px] font-bold shrink-0">!</span>
-                        <span>Registra tus ingresos para ver tu disponible real</span>
+                    <div class="flex items-center gap-1.5 mt-1 text-emeraldAccent text-[12.5px] font-semibold">
+                        <span>✓ Vas bien este mes</span>
                     </div>
                 </div>
 
@@ -198,15 +178,15 @@
                                 <span>Transferencias</span>
                                 <span class="w-3.5 h-3.5 rounded-full border border-gray-400 text-[9px] flex items-center justify-center text-gray-300">i</span>
                             </div>
-                            <p id="transfers-amount" class="text-[17px] font-bold text-white mt-0.5">RD$4,500.00</p>
+                            <p id="transfers-amount" class="text-[17px] font-bold text-white mt-0.5">RD$96,000.00</p>
                         </div>
                     </div>
                     <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </div>
 
-            <!-- Banner Verde: Conecta tus cuentas -->
-            <div onclick="openConnectEmailModal()" class="bg-[#0e2a1b] border border-emerald-500/20 rounded-[22px] p-4 flex items-center justify-between cursor-pointer hover:bg-[#133623] transition">
+            <!-- Banner Categoria a vigilar -->
+            <div onclick="openView('parati')" class="bg-[#0e2a1b] border border-emerald-500/20 rounded-[22px] p-4 flex items-center justify-between cursor-pointer hover:bg-[#133623] transition">
                 <div class="flex items-center gap-3.5">
                     <div class="w-11 h-11 rounded-full bg-[#dff5e8] flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6 text-[#0b874b]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
@@ -217,10 +197,40 @@
                     </div>
                     <div>
                         <p class="text-[13.5px] font-semibold text-[#18c973]">Tu categoría a vigilar: De todo un poco</p>
-                        <p id="connected-bank-subtitle" class="text-[12px] text-[#14a35d] mt-0.5">Conecta tus cuentas para verlo todo</p>
+                        <p class="text-[12px] text-[#14a35d] mt-0.5">Ponte un límite y recibe alertas</p>
                     </div>
                 </div>
                 <span class="text-[#18c973] text-sm">→</span>
+            </div>
+
+            <!-- Pulso Diario -->
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold">♥</div>
+                    <div>
+                        <p class="text-[13px] text-gray-400">PULSO DIARIO</p>
+                        <p class="text-sm font-bold text-white">Gastado hoy: <span class="text-emeraldAccent">RD$1,200.00</span></p>
+                    </div>
+                </div>
+                <span class="text-xs text-gray-400">Meta diaria: RD$0.00</span>
+            </div>
+
+            <!-- Transacciones de hoy -->
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-white text-sm">Transacciones de hoy</h3>
+                    <span onclick="showToast('Sincronizado')" class="text-xs text-emeraldAccent cursor-pointer">Sincronizar</span>
+                </div>
+                <div id="today-tx-list" class="space-y-2"></div>
+            </div>
+
+            <!-- Cuentas Conectadas en Inicio -->
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-white text-sm">Cuentas conectadas</h3>
+                    <span onclick="openView('cuentas')" class="text-xs text-emeraldAccent cursor-pointer">Ver todas →</span>
+                </div>
+                <div id="home-banks-list" class="space-y-2"></div>
             </div>
         </section>
 
@@ -244,21 +254,18 @@
 
             <!-- Gráfico de Barras Mensual -->
             <div class="pt-2">
-                <div class="grid grid-cols-[58px_1fr] gap-2 items-end h-52">
-                    <div class="h-full flex flex-col justify-between text-[12px] text-gray-300 pb-6">
-                        <span id="y-max">RD$150</span>
-                        <span id="y-mid">RD$100</span>
-                        <span id="y-min">RD$50</span>
+                <div class="grid grid-cols-[68px_1fr] gap-2 items-end h-52">
+                    <div class="h-full flex flex-col justify-between text-[11px] text-gray-300 pb-6">
+                        <span id="y-max">RD$800k</span>
+                        <span id="y-mid">RD$400k</span>
+                        <span id="y-min">RD$200k</span>
                         <span></span>
                     </div>
                     <div class="h-full flex flex-col justify-end relative border-b border-white/[0.06]">
-                        <div class="absolute inset-x-0 top-3 border-t border-white/[0.05]"></div>
-                        <div class="absolute inset-x-0 top-1/3 border-t border-white/[0.05]"></div>
-                        <div class="absolute inset-x-0 top-2/3 border-t border-white/[0.05]"></div>
                         <div id="bars-container" class="grid grid-cols-6 gap-2 items-end h-44 px-1 relative z-10"></div>
                     </div>
                 </div>
-                <div class="grid grid-cols-[58px_1fr] gap-2 mt-2">
+                <div class="grid grid-cols-[68px_1fr] gap-2 mt-2">
                     <div></div>
                     <div class="grid grid-cols-6 gap-2 text-center text-[12px] text-gray-300">
                         <span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span><span>Nov</span>
@@ -299,21 +306,19 @@
                         </div>
                         <div>
                             <p id="ver-tx-label" class="text-[15px] font-bold text-white">Ver gastos</p>
-                            <p class="text-[12px] text-gray-400">Detalle del mes (toca para abrir/eliminar)</p>
+                            <p class="text-[12px] text-gray-400">Detalle del mes (toca para editar/eliminar)</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span id="tx-month-total" class="text-[15px] font-bold text-white">RD$0.00</span>
+                        <span id="tx-month-total" class="text-[15px] font-bold text-white">RD$2,155.00</span>
                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </div>
 
-                <!-- Lista desplegable de movimientos -->
                 <div id="tx-detail-drawer" class="bg-[#0c1610] px-4 py-3 space-y-2.5">
                     <div id="tx-items-list" class="space-y-2 text-sm"></div>
                 </div>
 
-                <!-- Transferencias -->
                 <div onclick="openTransferModal()" class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02]">
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-2xl bg-[#133322] text-emeraldAccent flex items-center justify-center">
@@ -325,12 +330,11 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span id="tx-transfers-total" class="text-[15px] font-bold text-white">RD$4,500.00</span>
+                        <span id="tx-transfers-total" class="text-[15px] font-bold text-white">RD$96,000.00</span>
                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </div>
 
-                <!-- Exportar resumen PDF REAL -->
                 <div onclick="exportMonthlySummaryPDF()" class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02]">
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-2xl bg-[#133322] text-emeraldAccent flex items-center justify-center">
@@ -349,22 +353,37 @@
         <!-- ==================== 3. VISTA PARA TI ==================== -->
         <section id="view-parati" class="hidden relative z-10 px-4 pt-6 space-y-5">
             <h1 class="text-2xl font-extrabold text-white">Para ti</h1>
-            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emeraldAccent flex items-center justify-center text-xl">☁️</div>
+            <p class="text-xs text-gray-400">Tu mes hasta ahora</p>
+            
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-3">
+                <span class="text-xs font-bold text-gray-400 uppercase">Recurrentes</span>
+                <p class="text-sm font-semibold text-white">Nada aún</p>
+                <p class="text-xs text-gray-400">Por ahora, ninguno.</p>
+            </div>
+
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-emeraldAccent uppercase">Cambios importantes</span>
+                    <span class="text-xs text-gray-400">1 cambio</span>
+                </div>
+                <h4 class="font-bold text-white text-base">Gastaste RD$2,079.00 más que a esta fecha el mes pasado</h4>
+                <p class="text-xs text-gray-400">Antes llevabas RD$576.00</p>
+            </div>
+
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-3">
+                <span class="text-xs font-bold text-gray-400 uppercase">Este mes</span>
+                <div class="flex justify-between">
                     <div>
-                        <h3 class="font-bold text-white">Base de datos en la nube</h3>
-                        <p class="text-xs text-gray-400">Conecta Supabase gratis para sincronizar tus datos entre tu PC y celular</p>
+                        <p class="text-xs text-gray-400">Total gastado</p>
+                        <p class="text-lg font-extrabold text-white">RD$2,155.00</p>
+                        <p class="text-xs text-gray-400">Lo que llevas.</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-400">De tus ingresos</p>
+                        <p class="text-lg font-extrabold text-emeraldAccent">4% gastado</p>
+                        <p class="text-xs text-gray-400">Te quedaron RD$51,795.00</p>
                     </div>
                 </div>
-                <button onclick="openCloudConfigModal()" class="w-full py-3 rounded-xl bg-emeraldAccent text-black font-bold text-sm hover:opacity-90 transition">
-                    Configurar conexión gratuita (Supabase)
-                </button>
-            </div>
-            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-2">
-                <span class="text-[11px] font-bold text-emeraldAccent uppercase tracking-wider">Regla Financiera</span>
-                <h4 class="font-bold text-white text-base">Control de gastos hormiga</h4>
-                <p class="text-xs text-gray-400 leading-relaxed">Registra cada gasto diario con el botón + en Inicio para mantener tu balance disponible actualizado al instante.</p>
             </div>
         </section>
 
@@ -372,31 +391,36 @@
         <section id="view-presupuesto" class="hidden relative z-10 px-4 pt-6 space-y-5">
             <div class="flex items-center justify-between">
                 <h1 class="text-2xl font-extrabold text-white">Presupuesto</h1>
-                <button onclick="openBudgetEditModal()" class="px-3.5 py-1.5 rounded-full bg-[#163626] text-emeraldAccent text-xs font-bold">Editar límite</button>
+                <button onclick="openBudgetModal()" class="w-10 h-10 rounded-full bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold text-lg">+</button>
             </div>
-            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-4">
-                <div class="flex justify-between items-end">
-                    <div>
-                        <p class="text-xs text-gray-400">Presupuesto mensual</p>
-                        <p id="budget-limit-display" class="text-2xl font-extrabold text-white mt-0.5">RD$15,000.00</p>
-                    </div>
-                    <span class="text-xs font-semibold text-emeraldAccent bg-emerald-500/10 px-2.5 py-1 rounded-full">Activo</span>
+            
+            <div class="flex items-center justify-between text-sm">
+                <button class="text-emeraldAccent">‹</button>
+                <span class="font-bold text-white">Noviembre <span class="text-xs bg-[#163626] text-emeraldAccent px-2 py-0.5 rounded-full ml-1">Este mes</span></span>
+                <button class="text-gray-400">›</button>
+            </div>
+
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-8 text-center space-y-4">
+                <div class="w-24 h-24 mx-auto rounded-full border-4 border-emeraldAccent/30 flex items-center justify-center">
+                    <span class="text-2xl">🎯</span>
                 </div>
-                <div class="w-full h-3 bg-[#1a2c22] rounded-full overflow-hidden">
-                    <div id="budget-progress-bar" class="h-full bg-emeraldAccent rounded-full transition-all duration-500" style="width: 5%;"></div>
-                </div>
-                <div class="flex justify-between text-xs text-gray-400">
-                    <span id="budget-spent-label">Gastado: RD$145.00</span>
-                    <span id="budget-remaining-pct">Disponible: 99%</span>
-                </div>
+                <h3 class="font-bold text-white text-lg">Arma tu presupuesto</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Agrega un límite por categoría o negocio. Te avisamos al acercarte.</p>
+                <button onclick="openBudgetModal()" class="px-5 py-3 rounded-2xl bg-emeraldAccent text-black font-extrabold text-sm shadow-lg">+ Crear primer límite</button>
             </div>
         </section>
 
         <!-- ==================== 5. VISTA CUENTAS ==================== -->
         <section id="view-cuentas" class="hidden relative z-10 px-4 pt-6 space-y-5">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-extrabold text-white">Cuentas</h1>
-                <button onclick="openConnectEmailModal()" class="px-3.5 py-1.5 rounded-full bg-emeraldAccent text-black text-xs font-bold">+ Conectar banco</button>
+                <div>
+                    <h1 class="text-2xl font-extrabold text-white">Mis Cuentas</h1>
+                    <p class="text-xs text-gray-400 mt-0.5">Gestiona tus cuentas bancarias</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs bg-[#163626] text-emeraldAccent px-2.5 py-1 rounded-full font-bold">4 cuentas</span>
+                    <button onclick="openConnectEmailModal()" class="w-10 h-10 rounded-full bg-emeraldAccent text-black font-bold flex items-center justify-center text-lg shadow-lg">+</button>
+                </div>
             </div>
             <div id="accounts-list" class="space-y-3"></div>
         </section>
@@ -405,210 +429,162 @@
         <section id="view-configuracion" class="hidden relative z-10 px-4 pt-5 space-y-6">
             <div class="flex items-center gap-3.5">
                 <button onclick="switchTab('inicio')" class="w-11 h-11 rounded-full bg-[#1c2e24] flex items-center justify-center text-white hover:bg-[#263d30] transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                 </button>
                 <h1 class="text-[26px] font-extrabold tracking-tight text-white">Configuración</h1>
             </div>
 
-            <!-- Tarjeta Perfil -->
+            <!-- Perfil -->
             <div onclick="openProfileEditModal()" class="cursor-pointer bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 flex items-center justify-between">
                 <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-full bg-[#2a0e12] border border-rose-500/30 flex items-center justify-center">
-                        <span class="text-red-500 text-xl">❤️</span>
+                    <div class="w-12 h-12 rounded-full bg-rose-900/30 border border-rose-500/30 flex items-center justify-center font-bold text-rose-400">
+                        EI
                     </div>
                     <div>
-                        <p id="cfg-user-email" class="text-[14px] font-medium text-gray-200">eduarlymoua90@gmail.com</p>
-                        <div class="flex items-center gap-1.5 mt-1">
-                            <span class="w-3.5 h-3.5 rounded-full border border-gray-500 inline-block"></span>
-                            <span class="text-[12.5px] font-semibold text-emeraldAccent">Editar perfil y nombre</span>
-                        </div>
+                        <p id="cfg-user-name" class="text-[15px] font-bold text-white">Eduarly Inoa</p>
+                        <p id="cfg-user-email" class="text-[13px] text-gray-400">eduarlyinoa96@gmail.com</p>
                     </div>
                 </div>
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
 
-            <!-- NUBE GRATUITA SUPABASE -->
-            <div class="space-y-2.5">
-                <div class="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-gray-400 uppercase">
-                    <span>SINCRONIZACIÓN EN LA NUBE (GRATIS)</span>
-                </div>
-                <div onclick="openCloudConfigModal()" class="bg-gradient-to-r from-[#0e8a4e] to-[#12a65e] rounded-[22px] p-4 flex items-center justify-between cursor-pointer shadow-lg">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center text-white shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-[16px] font-bold text-white">Conectar Base de Datos</h3>
-                            <p id="cfg-cloud-desc" class="text-[12.5px] text-white/90 leading-snug mt-0.5">Pega tu URL y Key de Supabase para guardar todo en la nube</p>
-                        </div>
+            <!-- Suscripción -->
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 space-y-3">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase font-bold">Suscripción activa</p>
+                        <p class="text-sm font-bold text-white mt-0.5">Hasta el 15 de diciembre de 2026</p>
                     </div>
-                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    </div>
+                    <span class="text-xs bg-emerald-500/10 text-emeraldAccent px-2.5 py-1 rounded-full font-bold">PRO</span>
                 </div>
+                <button onclick="showToast('Suscripción activa')" class="w-full py-2.5 rounded-xl bg-[#1a2c22] text-white font-semibold text-xs">Gestionar suscripción</button>
             </div>
 
-            <!-- MONEDA -->
+            <!-- Moneda -->
             <div class="space-y-2.5">
-                <div class="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-gray-400 uppercase">
-                    <span>MONEDA</span>
-                </div>
+                <div class="text-[11px] font-bold tracking-wider text-gray-400 uppercase">MONEDA</div>
                 <div class="grid grid-cols-2 gap-3.5">
-                    <div onclick="setCurrency('RD$')" id="cfg-card-rd" class="bg-[#0e261a] border-2 border-emeraldAccent rounded-[22px] p-5 text-center cursor-pointer transition">
-                        <div class="text-3xl mb-1.5">🇩🇴</div>
-                        <div class="text-[20px] font-extrabold text-emeraldAccent">RD$</div>
-                        <div class="text-[13px] font-medium text-emeraldAccent mt-0.5">Pesos</div>
+                    <div onclick="setCurrency('RD$')" class="bg-[#0e261a] border-2 border-emeraldAccent rounded-[22px] p-4 text-center cursor-pointer">
+                        <div class="text-2xl mb-1">🇩🇴</div>
+                        <div class="text-lg font-extrabold text-emeraldAccent">RD$</div>
+                        <div class="text-xs text-emeraldAccent">Pesos</div>
                     </div>
-                    <div onclick="setCurrency('US$')" id="cfg-card-us" class="bg-[#111d16] border border-white/[0.07] rounded-[22px] p-5 text-center cursor-pointer transition">
-                        <div class="text-3xl mb-1.5">🇺🇸</div>
-                        <div class="text-[20px] font-extrabold text-gray-300">US$</div>
-                        <div class="text-[13px] font-medium text-gray-400 mt-0.5">Dólares</div>
+                    <div onclick="setCurrency('US$')" class="bg-[#111d16] border border-white/[0.07] rounded-[22px] p-4 text-center cursor-pointer">
+                        <div class="text-2xl mb-1">🇺🇸</div>
+                        <div class="text-lg font-extrabold text-gray-300">US$</div>
+                        <div class="text-xs text-gray-400">Dólares</div>
                     </div>
                 </div>
             </div>
 
-            <!-- SALIR -->
-            <div class="space-y-2.5">
-                <div class="text-[11px] font-bold tracking-wider text-gray-400 uppercase">DATOS Y CUENTA</div>
-                <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] divide-y divide-white/[0.06]">
-                    <button onclick="resetAllData()" class="w-full p-4 flex items-center gap-3.5 text-left text-rose-500 hover:bg-white/[0.02]">
-                        <div class="w-10 h-10 rounded-2xl bg-[#1f191a] flex items-center justify-center">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                        </div>
-                        <span class="text-[15px] font-semibold">Reiniciar todos los registros</span>
-                    </button>
+            <!-- Supabase Cloud -->
+            <div onclick="openCloudConfigModal()" class="bg-gradient-to-r from-[#0e8a4e] to-[#12a65e] rounded-[22px] p-4 flex items-center justify-between cursor-pointer shadow-lg">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center text-white">☁️</div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white">Conectar Supabase (Nube)</h3>
+                        <p id="cfg-cloud-desc" class="text-xs text-white/90">Sincroniza tus datos en línea</p>
+                    </div>
                 </div>
+                <span class="text-white">→</span>
             </div>
 
-            <p class="text-center text-[13px] text-gray-500 pb-4">Vaulty Versión 2.0.40 · 100% Funcional</p>
+            <!-- Opciones de Salir -->
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] divide-y divide-white/[0.06]">
+                <button onclick="resetAllData()" class="w-full p-4 flex items-center gap-3 text-left text-rose-500 hover:bg-white/[0.02]">
+                    <span>🗑️ Reiniciar todos los registros</span>
+                </button>
+            </div>
+            <p class="text-center text-xs text-gray-500 pb-4">Vaulty Versión 2.0.40 · 100% Funcional</p>
         </section>
 
-        <!-- ==================== MODALES INTERACTIVOS ==================== -->
+        <!-- ==================== MODALES ==================== -->
 
-        <!-- Modal 1: Registrar Ingreso / Gasto -->
+        <!-- Modal Transacción (Gasto/Ingreso) -->
         <div id="modal-transaction" class="hidden fixed inset-0 z-50 bg-black/75 flex items-end justify-center max-w-[430px] mx-auto">
-            <div class="bg-[#101e16] w-full rounded-t-[28px] border-t border-white/10 p-6 space-y-5 animate-slide-up">
+            <div class="bg-[#101e16] w-full rounded-t-[28px] border-t border-white/10 p-6 space-y-4 animate-slide-up">
                 <div class="flex items-center justify-between">
-                    <h3 id="tx-modal-title" class="text-xl font-extrabold text-white">Registrar Gasto</h3>
-                    <button onclick="closeModal('modal-transaction')" class="w-9 h-9 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
+                    <h3 id="tx-modal-title" class="text-lg font-extrabold text-white">Registrar Gasto</h3>
+                    <button onclick="closeModal('modal-transaction')" class="w-8 h-8 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
                 </div>
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-xs text-gray-400 uppercase font-bold">Monto (<span class="curr-label">RD$</span>)</label>
-                        <input id="tx-input-amount" type="number" step="0.01" placeholder="0.00" class="w-full mt-1.5 bg-[#09130e] border border-emerald-500/30 rounded-2xl px-4 py-3.5 text-2xl font-extrabold text-white focus:outline-none focus:border-emeraldAccent">
+                <div>
+                    <label class="text-xs text-gray-400 uppercase font-bold">Monto (<span class="curr-label">RD$</span>)</label>
+                    <input id="tx-input-amount" type="number" step="0.01" placeholder="0.00" class="w-full mt-1 bg-[#09130e] border border-emerald-500/30 rounded-2xl px-4 py-3 text-2xl font-extrabold text-white focus:outline-none">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 uppercase font-bold">Categoría</label>
+                    <div class="grid grid-cols-3 gap-2 mt-2">
+                        <button onclick="selectCategory('Otros')" class="cat-btn py-2 px-3 rounded-xl bg-[#163626] text-white text-xs font-bold border border-emeraldAccent">Otros</button>
+                        <button onclick="selectCategory('Bares y Restaurantes')" class="cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10">Bares y Rest.</button>
+                        <button onclick="selectCategory('Combustible')" class="cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10">Combustible</button>
+                        <button onclick="selectCategory('Supermercado')" class="cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10">Supermercado</button>
+                        <button onclick="selectCategory('Transporte')" class="cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10">Transporte</button>
+                        <button onclick="selectCategory('Delivery')" class="cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10">Delivery</button>
                     </div>
-                    <div>
-                        <label class="text-xs text-gray-400 uppercase font-bold">Descripción / Categoría</label>
-                        <input id="tx-input-desc" type="text" placeholder="Ej: Supermercado, Salario, Gasolina..." class="w-full mt-1.5 bg-[#09130e] border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emeraldAccent">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 uppercase font-bold">Descripción / Nota</label>
+                    <input id="tx-input-desc" type="text" placeholder="Ej: Pago, Cena, Compra..." class="w-full mt-1 bg-[#09130e] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none">
+                </div>
+                <button onclick="saveNewTransaction()" class="w-full py-3.5 rounded-2xl bg-emeraldAccent text-black font-extrabold text-base shadow-lg">Guardar registro</button>
+            </div>
+        </div>
+
+        <!-- Modal Notificaciones -->
+        <div id="modal-notifications" class="hidden fixed inset-0 z-50 bg-black/75 flex items-end justify-center max-w-[430px] mx-auto">
+            <div class="bg-[#101e16] w-full rounded-t-[28px] border-t border-white/10 p-6 space-y-4 animate-slide-up max-h-[70vh] overflow-y-auto">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-extrabold text-white">Notificaciones</h3>
+                    <button onclick="closeModal('modal-notifications')" class="w-8 h-8 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
+                </div>
+                <div class="bg-[#14231b] border border-white/10 rounded-2xl p-4 space-y-1">
+                    <div class="flex items-center gap-2 text-emeraldAccent font-bold text-sm">
+                        <span>⚡ Vas rápido este ciclo</span>
                     </div>
-                    <button onclick="saveNewTransaction()" class="w-full py-3.5 rounded-2xl bg-emeraldAccent text-black font-extrabold text-base hover:opacity-95 transition shadow-lg">
-                        Guardar registro
-                    </button>
+                    <p class="text-xs text-gray-300">Llevas RD$1,200 y cerrarías cerca de RD$1,791.</p>
+                    <p class="text-[10px] text-gray-500 pt-1">Ayer · 10:04 AM</p>
                 </div>
             </div>
         </div>
 
-        <!-- Modal 2: Registrar Transferencia -->
-        <div id="modal-transfer" class="hidden fixed inset-0 z-50 bg-black/75 flex items-end justify-center max-w-[430px] mx-auto">
-            <div class="bg-[#101e16] w-full rounded-t-[28px] border-t border-white/10 p-6 space-y-5 animate-slide-up">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-extrabold text-white">Actualizar Transferencias</h3>
-                    <button onclick="closeModal('modal-transfer')" class="w-9 h-9 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
-                </div>
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-xs text-gray-400 uppercase font-bold">Monto a sumar a Transferencias (RD$)</label>
-                        <input id="transfer-input-amount" type="number" step="0.01" placeholder="0.00" class="w-full mt-1.5 bg-[#09130e] border border-emerald-500/30 rounded-2xl px-4 py-3.5 text-2xl font-extrabold text-white focus:outline-none focus:border-emeraldAccent">
-                    </div>
-                    <button onclick="saveNewTransfer()" class="w-full py-3.5 rounded-2xl bg-emeraldAccent text-black font-extrabold text-base">
-                        Sumar transferencia
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal 3: Configurar Supabase Gratis -->
+        <!-- Modal Configurar Supabase -->
         <div id="modal-cloud" class="hidden fixed inset-0 z-50 bg-black/80 flex items-end justify-center max-w-[430px] mx-auto">
             <div class="bg-[#101e16] w-full rounded-t-[28px] border-t border-white/10 p-6 space-y-4 animate-slide-up">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-extrabold text-white">Conectar Supabase (Gratis)</h3>
-                    <button onclick="closeModal('modal-cloud')" class="w-9 h-9 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
+                    <button onclick="closeModal('modal-cloud')" class="w-8 h-8 rounded-full bg-[#1b2c22] text-gray-300 flex items-center justify-center">✕</button>
                 </div>
-                <p class="text-xs text-gray-300 leading-relaxed">Pega aquí los dos datos de tu proyecto gratuito en <b>Supabase > Settings > API</b> para sincronizar tus movimientos en la nube:</p>
-                <div class="space-y-3">
-                    <div>
-                        <label class="text-[11px] text-gray-400 uppercase font-bold">Project URL</label>
-                        <input id="sb-url-input" type="text" placeholder="https://xxxxx.supabase.co" class="w-full mt-1 bg-[#09130e] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-emeraldAccent">
-                    </div>
-                    <div>
-                        <label class="text-[11px] text-gray-400 uppercase font-bold">Anon / Public Key</label>
-                        <input id="sb-key-input" type="text" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..." class="w-full mt-1 bg-[#09130e] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-emeraldAccent">
-                    </div>
-                    <button onclick="saveSupabaseCredentials()" class="w-full py-3 rounded-2xl bg-emeraldAccent text-black font-extrabold text-sm">
-                        Conectar y Sincronizar Ahora
-                    </button>
-                </div>
+                <input id="sb-url-input" type="text" placeholder="Project URL (https://xxxxx.supabase.co)" class="w-full bg-[#09130e] border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
+                <input id="sb-key-input" type="text" placeholder="Anon / Public Key" class="w-full bg-[#09130e] border border-white/10 rounded-xl px-3 py-2 text-xs text-white">
+                <button onclick="saveSupabaseCredentials()" class="w-full py-3 rounded-2xl bg-emeraldAccent text-black font-extrabold text-sm">Conectar Ahora</button>
             </div>
         </div>
 
-        <!-- Modal 4: Conecta tu correo y bancos -->
-        <div id="modal-connect-email" class="hidden fixed inset-0 z-50 bg-appBg max-w-[430px] mx-auto overflow-y-auto">
-            <div class="top-left-glow absolute top-0 left-0 right-0 h-56 pointer-events-none"></div>
-            <div class="relative z-10 p-5 space-y-6">
-                <div class="flex items-start justify-between pt-2">
-                    <div class="pr-4">
-                        <h2 class="text-[24px] font-extrabold text-white">Conecta tu correo</h2>
-                        <p class="text-[13.5px] text-gray-300 mt-1 leading-snug">Solo leemos las notificaciones que te envía tu banco</p>
-                    </div>
-                    <button onclick="closeModal('modal-connect-email')" class="w-11 h-11 rounded-2xl bg-[#24332b] flex items-center justify-center text-white">✕</button>
-                </div>
-
-                <div class="bg-[#111d16] border border-white/[0.06] rounded-[26px] p-5 space-y-6">
-                    <div class="space-y-2.5">
-                        <label class="text-[11px] font-bold tracking-wider text-gray-300 uppercase">TU BANCO</label>
-                        <button onclick="openBankSelector()" class="w-full p-4 rounded-2xl bg-[#16241c] border border-white/10 flex items-center justify-between text-left">
-                            <span id="selected-bank-display" class="text-[15px] text-gray-400">Selecciona tu banco</span>
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="text-[11px] font-bold tracking-wider text-gray-300 uppercase">TU CORREO</div>
-                        <h3 class="text-[16px] font-bold text-white">¿A qué correo te avisa el banco?</h3>
-                        <button onclick="connectEmailProvider('Gmail')" class="w-full p-4 rounded-2xl bg-[#16241c] border border-white/10 flex items-center gap-3.5 hover:bg-[#1c2e24]">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-bold text-red-600">G</div>
-                            <span class="text-[15px] font-bold text-white">Uso Gmail</span>
-                        </button>
-                        <button onclick="connectEmailProvider('Microsoft')" class="w-full p-4 rounded-2xl bg-[#16241c] border border-white/10 flex items-center gap-3.5 hover:bg-[#1c2e24] text-left">
-                            <div class="w-8 h-8 rounded-lg bg-[#0078D4] flex items-center justify-center text-white font-bold text-xs">✉️</div>
-                            <div>
-                                <div class="text-[15px] font-bold text-white">Uso Microsoft</div>
-                                <div class="text-[12px] text-gray-400">Hotmail, Live, Outlook o MSN</div>
-                            </div>
-                        </button>
-                    </div>
-                </div>
+        <!-- Modal Banco / Correo -->
+        <div id="modal-connect-email" class="hidden fixed inset-0 z-50 bg-appBg max-w-[430px] mx-auto overflow-y-auto p-5 space-y-5">
+            <div class="flex justify-between items-center pt-2">
+                <h2 class="text-xl font-extrabold text-white">Conecta tu correo</h2>
+                <button onclick="closeModal('modal-connect-email')" class="w-10 h-10 rounded-xl bg-[#24332b] flex items-center justify-center text-white">✕</button>
             </div>
-
-            <div id="bank-selector-sheet" class="hidden fixed inset-0 z-50 bg-black/70 flex items-end justify-center max-w-[430px] mx-auto">
-                <div class="bg-[#0e1a13] w-full rounded-t-[28px] border-t border-white/10 p-5 max-h-[82vh] flex flex-col animate-slide-up">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-[19px] font-extrabold text-white">Selecciona tu banco</h3>
-                        <button onclick="closeModal('bank-selector-sheet')" class="w-9 h-9 rounded-xl bg-[#1a2921] flex items-center justify-center text-gray-300">✕</button>
-                    </div>
-                    <div id="banks-list-container" class="overflow-y-auto space-y-2 pr-1"></div>
-                </div>
+            <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-4 space-y-4">
+                <label class="text-xs font-bold text-gray-300 uppercase">Selecciona tu banco</label>
+                <select id="select-bank-dropdown" class="w-full p-3.5 rounded-xl bg-[#16241c] border border-white/10 text-white text-sm font-semibold focus:outline-none">
+                    <option value="Banco Popular Dominicano">Banco Popular Dominicano</option>
+                    <option value="Qik Banco Digital">Qik Banco Digital</option>
+                    <option value="Banreservas">Banreservas</option>
+                    <option value="BHD">BHD</option>
+                    <option value="Asociación Cibao">Asociación Cibao</option>
+                    <option value="Scotiabank">Scotiabank</option>
+                </select>
+                <button onclick="connectBankAction()" class="w-full py-3 rounded-xl bg-emeraldAccent text-black font-bold text-sm shadow-lg">Continuar con Google / Correo</button>
             </div>
         </div>
 
         <!-- Toast -->
-        <div id="toast" class="hidden fixed top-6 left-1/2 -translate-x-1/2 z-[60] bg-[#163626] border border-emerald-500/40 text-white px-4 py-2.5 rounded-full text-xs font-semibold shadow-2xl whitespace-nowrap"></div>
+        <div id="toast" class="hidden fixed top-6 left-1/2 -translate-x-1/2 z-[60] bg-[#163626] border border-emerald-500/40 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-2xl whitespace-nowrap"></div>
 
         <!-- Barra de Navegación Inferior -->
-        <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-[#07130d]/95 backdrop-blur-md border-t border-white/[0.06] px-3 pt-2.5 pb-4 flex justify-around items-center z-40">
+        <nav class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-[#07130d]/95 backdrop-blur-md border-t border-white/[0.06] px-3 pt-2.5 pb-4 flex justify-around items-center z-40">
             <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-item flex flex-col items-center gap-1 text-emeraldAccent">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z"/><path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z"/></svg>
                 <span class="text-[11px] font-semibold">Inicio</span>
@@ -632,6 +608,262 @@
         </nav>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Script de lógica integrado -->
+    <script>
+        const DOMINICAN_BANKS = [
+            { name: 'Banco Popular Dominicano', color: '#003876', badge: 'BPD' },
+            { name: 'Qik Banco Digital', color: '#00a3e0', badge: 'Qik' },
+            { name: 'Banreservas', color: '#005596', badge: 'BR' },
+            { name: 'BHD', color: '#007a33', badge: 'BHD' }
+        ];
+
+        const MONTHS = ['Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre'];
+        const RATE_USD = 60.0;
+
+        let appState = JSON.parse(localStorage.getItem('vaulty_v3_state')) || {
+            userName: 'Eduarly',
+            userEmail: 'eduarlyinoa96@gmail.com',
+            currency: 'RD$',
+            period: 'hoy',
+            selectedMonthIndex: 5,
+            txFilterType: 'gasto',
+            budgetLimit: 15000,
+            transfers: 96000,
+            connectedBanks: ['Banco Popular Dominicano', 'Qik Banco Digital', 'Banreservas', 'BHD'],
+            selectedCategory: 'Otros',
+            supabaseUrl: '',
+            supabaseKey: '',
+            transactions: [
+                { id: 1, type: 'gasto', amount: 1000, desc: 'Pago', monthIndex: 5, date: '17 nov 2026', bank: 'Banco Popular' },
+                { id: 2, type: 'gasto', amount: 200, desc: 'Otros', monthIndex: 5, date: '17 nov 2026', bank: 'Efectivo' },
+                { id: 3, type: 'ingreso', amount: 53950, desc: 'Pago al instante BCDRD', monthIndex: 5, date: '2 nov 2026' }
+            ]
+        };
+
+        function saveLocalState() {
+            localStorage.setItem('vaulty_v3_state', JSON.stringify(appState));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2500);
+        }
+
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function switchTab(tabName) {
+            ['inicio', 'transacciones', 'parati', 'presupuesto', 'cuentas', 'configuracion'].forEach(s => {
+                document.getElementById(`view-${s}`).classList.add('hidden');
+            });
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('text-emeraldAccent');
+                btn.classList.add('text-gray-400');
+            });
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-400');
+                activeBtn.classList.add('text-emeraldAccent');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderAll();
+        }
+
+        function openView(name) { switchTab(name); }
+
+        function setCurrency(curr) {
+            appState.currency = curr;
+            saveLocalState();
+            renderAll();
+        }
+
+        function setPeriod(period, btnEl) {
+            appState.period = period;
+            document.querySelectorAll('.period-btn').forEach(b => {
+                b.className = 'period-btn flex-1 py-2 rounded-full text-gray-300 hover:text-white transition';
+            });
+            btnEl.className = 'period-btn flex-1 py-2 rounded-full bg-white text-black font-semibold shadow transition';
+
+            const labels = {
+                ayer: 'Ayer has gastado',
+                hoy: 'Hoy has gastado',
+                semana: 'Esta semana has gastado',
+                mes: 'Este mes has gastado',
+                año: 'Este año has gastado'
+            };
+            document.getElementById('period-label').textContent = labels[period];
+            renderAll();
+        }
+
+        function openTransactionModal(type) {
+            modalTxType = type;
+            document.getElementById('tx-modal-title').textContent = type === 'gasto' ? 'Registrar Gasto' : 'Registrar Ingreso';
+            document.querySelectorAll('.curr-label').forEach(el => el.textContent = appState.currency);
+            document.getElementById('tx-input-amount').value = '';
+            document.getElementById('tx-input-desc').value = '';
+            document.getElementById('modal-transaction').classList.remove('hidden');
+        }
+
+        let modalTxType = 'gasto';
+
+        function selectCategory(cat) {
+            appState.selectedCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.textContent.includes(cat)) {
+                    btn.className = 'cat-btn py-2 px-3 rounded-xl bg-[#163626] text-white text-xs font-bold border border-emeraldAccent';
+                } else {
+                    btn.className = 'cat-btn py-2 px-3 rounded-xl bg-[#14231b] text-gray-300 text-xs font-bold border border-white/10';
+                }
+            });
+        }
+
+        function saveNewTransaction() {
+            const rawVal = parseFloat(document.getElementById('tx-input-amount').value);
+            const desc = document.getElementById('tx-input-desc').value.trim() || appState.selectedCategory;
+
+            if (!rawVal || rawVal <= 0) {
+                showToast('Ingresa un monto válido');
+                return;
+            }
+
+            const amountRD = appState.currency === 'RD$' ? rawVal : rawVal * RATE_USD;
+            appState.transactions.unshift({
+                id: Date.now(),
+                type: modalTxType,
+                amount: amountRD,
+                desc,
+                monthIndex: appState.selectedMonthIndex,
+                date: '17 nov 2026'
+            });
+
+            saveLocalState();
+            closeModal('modal-transaction');
+            renderAll();
+            showToast('Guardado en Vaulty');
+        }
+
+        function deleteTransaction(id) {
+            appState.transactions = appState.transactions.filter(t => t.id !== id);
+            saveLocalState();
+            renderAll();
+            showToast('Eliminado');
+        }
+
+        function openNotificationsModal() { document.getElementById('modal-notifications').classList.remove('hidden'); }
+        function openCloudConfigModal() { document.getElementById('modal-cloud').classList.remove('hidden'); }
+        function openConnectEmailModal() { document.getElementById('modal-connect-email').classList.remove('hidden'); }
+        function openBudgetModal() { showToast('Módulo de presupuestos activos'); }
+        function openProfileEditModal() { showToast('Perfil Pro Activo'); }
+        function openTransferModal() { showToast(`Transferencias totales: ${formatMoney(appState.transfers)}`); }
+
+        function connectBankAction() {
+            const bankName = document.getElementById('select-bank-dropdown').value;
+            if (!appState.connectedBanks.includes(bankName)) {
+                appState.connectedBanks.push(bankName);
+                saveLocalState();
+            }
+            closeModal('modal-connect-email');
+            renderAll();
+            showToast(`¡${bankName} conectado con éxito!`);
+        }
+
+        function formatMoney(amountRD) {
+            const val = appState.currency === 'RD$' ? amountRD : (amountRD / RATE_USD);
+            return `${appState.currency}${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+
+        function renderAll() {
+            document.getElementById('user-greeting-name').textContent = appState.userName;
+            
+            const expTotal = appState.transactions.filter(t => t.type === 'gasto').reduce((a,b)=>a+b.amount,0);
+            const incTotal = appState.transactions.filter(t => t.type === 'ingreso').reduce((a,b)=>a+b.amount,0);
+
+            document.getElementById('hero-amount').textContent = formatMoney(appState.period === 'hoy' ? 1200 : expTotal);
+            document.getElementById('month-expense-text').textContent = formatMoney(expTotal);
+            document.getElementById('month-income-text').textContent = formatMoney(incTotal);
+            document.getElementById('available-amount').textContent = formatMoney(Math.max(0, incTotal - expTotal));
+            document.getElementById('transfers-amount').textContent = formatMoney(appState.transfers);
+
+            // Transacciones de hoy en Inicio
+            const todayList = document.getElementById('today-tx-list');
+            todayList.innerHTML = appState.transactions.slice(0, 2).map(t => `
+                <div class="flex justify-between items-center py-2 border-b border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold text-xs">${t.desc[0]}</div>
+                        <div>
+                            <p class="font-bold text-white text-xs">${t.desc}</p>
+                            <p class="text-[10px] text-gray-400">Cuenta</p>
+                        </div>
+                    </div>
+                    <span class="font-bold text-xs text-white">${formatMoney(t.amount)}</span>
+                </div>
+            `).join('');
+
+            // Cuentas en inicio y en cuentas
+            const homeBanks = document.getElementById('home-banks-list');
+            const accountsList = document.getElementById('accounts-list');
+            
+            homeBanks.innerHTML = appState.connectedBanks.map(b => `
+                <div class="flex items-center justify-between py-1.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xs">🏦</div>
+                        <span class="text-xs font-bold text-white">${b}</span>
+                    </div>
+                    <span class="text-[10px] text-emeraldAccent font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full">Activa</span>
+                </div>
+            `).join('');
+
+            accountsList.innerHTML = appState.connectedBanks.map((b, idx) => `
+                <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-white text-black flex items-center justify-center font-extrabold">🏦</div>
+                        <div>
+                            <p class="font-bold text-white text-sm">${b}</p>
+                            <p class="text-xs text-gray-400">eduarlyinoa96@gmail.com</p>
+                        </div>
+                    </div>
+                    <button onclick="removeBank('${b}')" class="text-rose-400 hover:text-rose-300">🗑️</button>
+                </div>
+            `).join('');
+
+            // Barras Transacciones
+            const bars = document.getElementById('bars-container');
+            bars.innerHTML = [120000, 95000, 180000, 210000, 850000, expTotal].map((v, i) => `
+                <div class="h-full flex items-end justify-center cursor-pointer">
+                    <div style="height:${Math.max(10, Math.min(100, v/9000))}%;" class="w-3.5 bg-barYellow rounded-t-md"></div>
+                </div>
+            `).join('');
+
+            // Detalle de transacciones
+            document.getElementById('tx-items-list').innerHTML = appState.transactions.map(t => `
+                <div class="flex justify-between items-center py-2 border-b border-white/5">
+                    <span class="text-gray-200 text-xs">${t.desc} (${t.date})</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-bold text-xs text-barYellow">${formatMoney(t.amount)}</span>
+                        <button onclick="deleteTransaction(${t.id})" class="text-rose-400 text-xs">✕</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function removeBank(b) {
+            appState.connectedBanks = appState.connectedBanks.filter(x => x !== b);
+            saveLocalState();
+            renderAll();
+            showToast('Banco desconectado');
+        }
+
+        function resetAllData() {
+            if (confirm('¿Reiniciar Vaulty?')) {
+                localStorage.removeItem('vaulty_v3_state');
+                location.reload();
+            }
+        }
+
+        renderAll();
+    </script>
 </body>
 </html>
