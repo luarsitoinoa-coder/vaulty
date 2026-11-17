@@ -102,8 +102,8 @@
             <!-- Total Gastado -->
             <div class="text-center pt-1">
                 <p id="period-label" class="text-[14px] text-gray-200 font-medium">Hoy has gastado</p>
-                <div id="hero-amount" class="text-[40px] leading-tight font-extrabold tracking-tight text-white mt-1">RD$1,200.00</div>
-                <p id="hero-subtext" class="text-xs text-emeraldAccent mt-1 font-medium">Has gastado RD$825.00 (220%) más que ayer</p>
+                <div id="hero-amount" class="text-[40px] leading-tight font-extrabold tracking-tight text-white mt-1">RD$0.00</div>
+                <p id="hero-subtext" class="text-xs text-emeraldAccent mt-1 font-medium">Comienza a registrar tus gastos</p>
                 
                 <div class="inline-flex items-center bg-[#1b2922] p-1 rounded-full mt-3">
                     <button onclick="setCurrency('RD$')" id="curr-btn-rd" class="px-4 py-1 rounded-full text-[13px] font-bold bg-white text-[#0c3b24] transition">RD$</button>
@@ -129,7 +129,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/></svg>
                             </button>
                         </div>
-                        <p id="month-income-text" class="text-[15px] font-bold text-emeraldAccent mt-3">RD$53,950.00</p>
+                        <p id="month-income-text" class="text-[15px] font-bold text-emeraldAccent mt-3">RD$0.00</p>
                     </div>
 
                     <div class="pl-2">
@@ -144,7 +144,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/></svg>
                             </button>
                         </div>
-                        <p id="month-expense-text" class="text-[15px] font-bold text-white mt-3">RD$2,155.00</p>
+                        <p id="month-expense-text" class="text-[15px] font-bold text-white mt-3">RD$0.00</p>
                     </div>
                 </div>
 
@@ -156,10 +156,10 @@
                     </div>
                     <div class="flex items-center gap-2.5 mt-1.5">
                         <span id="available-dot" class="w-2.5 h-2.5 rounded-full bg-emeraldAccent"></span>
-                        <span id="available-amount" class="text-[26px] font-extrabold tracking-tight text-white">RD$51,795.00</span>
+                        <span id="available-amount" class="text-[26px] font-extrabold tracking-tight text-white">RD$0.00</span>
                     </div>
                     <div class="flex items-center gap-1.5 mt-1 text-emeraldAccent text-[12.5px] font-semibold">
-                        <span>✓ Vas bien este mes</span>
+                        <span>✓ Listo para empezar</span>
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                                 <span>Transferencias</span>
                                 <span class="w-3.5 h-3.5 rounded-full border border-gray-400 text-[9px] flex items-center justify-center text-gray-300">i</span>
                             </div>
-                            <p id="transfers-amount" class="text-[17px] font-bold text-white mt-0.5">RD$96,000.00</p>
+                            <p id="transfers-amount" class="text-[17px] font-bold text-white mt-0.5">RD$0.00</p>
                         </div>
                     </div>
                     <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
@@ -209,7 +209,7 @@
                     <div class="w-11 h-11 rounded-2xl bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold">♥</div>
                     <div>
                         <p class="text-[13px] text-gray-400">PULSO DIARIO</p>
-                        <p class="text-sm font-bold text-white">Gastado hoy: <span class="text-emeraldAccent">RD$1,200.00</span></p>
+                        <p class="text-sm font-bold text-white">Gastado hoy: <span class="text-emeraldAccent">RD$0.00</span></p>
                     </div>
                 </div>
                 <span class="text-xs text-gray-400">Meta diaria: RD$0.00</span>
@@ -221,7 +221,7 @@
                     <h3 class="font-bold text-white text-sm">Transacciones de hoy</h3>
                     <span onclick="showToast('Sincronizado')" class="text-xs text-emeraldAccent cursor-pointer">Sincronizar</span>
                 </div>
-                <div id="today-tx-list" class="space-y-2"></div>
+                <div id="today-tx-list" class="space-y-2 text-xs text-gray-400">Sin movimientos aún hoy</div>
             </div>
 
             <!-- Cuentas Conectadas en Inicio -->
@@ -230,7 +230,7 @@
                     <h3 class="font-bold text-white text-sm">Cuentas conectadas</h3>
                     <span onclick="openView('cuentas')" class="text-xs text-emeraldAccent cursor-pointer">Ver todas →</span>
                 </div>
-                <div id="home-banks-list" class="space-y-2"></div>
+                <div id="home-banks-list" class="space-y-2 text-xs text-gray-400">No hay cuentas conectadas</div>
             </div>
         </section>
 
@@ -256,9 +256,9 @@
             <div class="pt-2">
                 <div class="grid grid-cols-[68px_1fr] gap-2 items-end h-52">
                     <div class="h-full flex flex-col justify-between text-[11px] text-gray-300 pb-6">
-                        <span id="y-max">RD$800k</span>
-                        <span id="y-mid">RD$400k</span>
-                        <span id="y-min">RD$200k</span>
+                        <span id="y-max">RD$10k</span>
+                        <span id="y-mid">RD$5k</span>
+                        <span id="y-min">RD$2k</span>
                         <span></span>
                     </div>
                     <div class="h-full flex flex-col justify-end relative border-b border-white/[0.06]">
@@ -306,17 +306,17 @@
                         </div>
                         <div>
                             <p id="ver-tx-label" class="text-[15px] font-bold text-white">Ver gastos</p>
-                            <p class="text-[12px] text-gray-400">Detalle del mes (toca para editar/eliminar)</p>
+                            <p class="text-[12px] text-gray-400">Detalle del mes</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span id="tx-month-total" class="text-[15px] font-bold text-white">RD$2,155.00</span>
+                        <span id="tx-month-total" class="text-[15px] font-bold text-white">RD$0.00</span>
                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </div>
 
                 <div id="tx-detail-drawer" class="bg-[#0c1610] px-4 py-3 space-y-2.5">
-                    <div id="tx-items-list" class="space-y-2 text-sm"></div>
+                    <div id="tx-items-list" class="space-y-2 text-sm text-gray-400">No hay transacciones registradas</div>
                 </div>
 
                 <div onclick="openTransferModal()" class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02]">
@@ -330,7 +330,7 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span id="tx-transfers-total" class="text-[15px] font-bold text-white">RD$96,000.00</span>
+                        <span id="tx-transfers-total" class="text-[15px] font-bold text-white">RD$0.00</span>
                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </div>
@@ -364,10 +364,10 @@
             <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-2">
                 <div class="flex justify-between items-center">
                     <span class="text-xs font-bold text-emeraldAccent uppercase">Cambios importantes</span>
-                    <span class="text-xs text-gray-400">1 cambio</span>
+                    <span class="text-xs text-gray-400">0 cambios</span>
                 </div>
-                <h4 class="font-bold text-white text-base">Gastaste RD$2,079.00 más que a esta fecha el mes pasado</h4>
-                <p class="text-xs text-gray-400">Antes llevabas RD$576.00</p>
+                <h4 class="font-bold text-white text-base">Comienza a registrar tus gastos este mes</h4>
+                <p class="text-xs text-gray-400">Todo limpio y listo</p>
             </div>
 
             <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-5 space-y-3">
@@ -375,13 +375,13 @@
                 <div class="flex justify-between">
                     <div>
                         <p class="text-xs text-gray-400">Total gastado</p>
-                        <p class="text-lg font-extrabold text-white">RD$2,155.00</p>
+                        <p class="text-lg font-extrabold text-white">RD$0.00</p>
                         <p class="text-xs text-gray-400">Lo que llevas.</p>
                     </div>
                     <div class="text-right">
                         <p class="text-xs text-gray-400">De tus ingresos</p>
-                        <p class="text-lg font-extrabold text-emeraldAccent">4% gastado</p>
-                        <p class="text-xs text-gray-400">Te quedaron RD$51,795.00</p>
+                        <p class="text-lg font-extrabold text-emeraldAccent">0% gastado</p>
+                        <p class="text-xs text-gray-400">Saldo intacto</p>
                     </div>
                 </div>
             </div>
@@ -418,11 +418,11 @@
                     <p class="text-xs text-gray-400 mt-0.5">Gestiona tus cuentas bancarias</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-xs bg-[#163626] text-emeraldAccent px-2.5 py-1 rounded-full font-bold">4 cuentas</span>
+                    <span id="account-count-badge" class="text-xs bg-[#163626] text-emeraldAccent px-2.5 py-1 rounded-full font-bold">0 cuentas</span>
                     <button onclick="openConnectEmailModal()" class="w-10 h-10 rounded-full bg-emeraldAccent text-black font-bold flex items-center justify-center text-lg shadow-lg">+</button>
                 </div>
             </div>
-            <div id="accounts-list" class="space-y-3"></div>
+            <div id="accounts-list" class="space-y-3 text-xs text-gray-400">No hay cuentas agregadas todavía. Conecta una arriba.</div>
         </section>
 
         <!-- ==================== 6. VISTA CONFIGURACIÓN ==================== -->
@@ -495,7 +495,7 @@
                     <span>🗑️ Reiniciar todos los registros</span>
                 </button>
             </div>
-            <p class="text-center text-xs text-gray-500 pb-4">Vaulty Versión 2.0.40 · 100% Funcional</p>
+            <p class="text-center text-xs text-gray-500 pb-4">Vaulty Versión 2.0.40 · 100% Limpio</p>
         </section>
 
         <!-- ==================== MODALES ==================== -->
@@ -539,10 +539,9 @@
                 </div>
                 <div class="bg-[#14231b] border border-white/10 rounded-2xl p-4 space-y-1">
                     <div class="flex items-center gap-2 text-emeraldAccent font-bold text-sm">
-                        <span>⚡ Vas rápido este ciclo</span>
+                        <span>⚡ Bienvenido a Vaulty</span>
                     </div>
-                    <p class="text-xs text-gray-300">Llevas RD$1,200 y cerrarías cerca de RD$1,791.</p>
-                    <p class="text-[10px] text-gray-500 pt-1">Ayer · 10:04 AM</p>
+                    <p class="text-xs text-gray-300">Empieza a registrar tus movimientos para ver resúmenes aquí.</p>
                 </div>
             </div>
         </div>
@@ -563,7 +562,7 @@
         <!-- Modal Banco / Correo -->
         <div id="modal-connect-email" class="hidden fixed inset-0 z-50 bg-appBg max-w-[430px] mx-auto overflow-y-auto p-5 space-y-5">
             <div class="flex justify-between items-center pt-2">
-                <h2 class="text-xl font-extrabold text-white">Conecta tu correo</h2>
+                <h2 class="text-xl font-extrabold text-white">Conecta tu cuenta</h2>
                 <button onclick="closeModal('modal-connect-email')" class="w-10 h-10 rounded-xl bg-[#24332b] flex items-center justify-center text-white">✕</button>
             </div>
             <div class="bg-[#111d16] border border-white/[0.06] rounded-[24px] p-4 space-y-4">
@@ -576,7 +575,7 @@
                     <option value="Asociación Cibao">Asociación Cibao</option>
                     <option value="Scotiabank">Scotiabank</option>
                 </select>
-                <button onclick="connectBankAction()" class="w-full py-3 rounded-xl bg-emeraldAccent text-black font-bold text-sm shadow-lg">Continuar con Google / Correo</button>
+                <button onclick="connectBankAction()" class="w-full py-3 rounded-xl bg-emeraldAccent text-black font-bold text-sm shadow-lg">Vincular Banco</button>
             </div>
         </div>
 
@@ -608,16 +607,8 @@
         </nav>
     </div>
 
-    <!-- Script de lógica integrado -->
+    <!-- Script de lógica completamente limpio -->
     <script>
-        const DOMINICAN_BANKS = [
-            { name: 'Banco Popular Dominicano', color: '#003876', badge: 'BPD' },
-            { name: 'Qik Banco Digital', color: '#00a3e0', badge: 'Qik' },
-            { name: 'Banreservas', color: '#005596', badge: 'BR' },
-            { name: 'BHD', color: '#007a33', badge: 'BHD' }
-        ];
-
-        const MONTHS = ['Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre'];
         const RATE_USD = 60.0;
 
         let appState = JSON.parse(localStorage.getItem('vaulty_v3_state')) || {
@@ -628,16 +619,12 @@
             selectedMonthIndex: 5,
             txFilterType: 'gasto',
             budgetLimit: 15000,
-            transfers: 96000,
-            connectedBanks: ['Banco Popular Dominicano', 'Qik Banco Digital', 'Banreservas', 'BHD'],
+            transfers: 0,
+            connectedBanks: [],
             selectedCategory: 'Otros',
             supabaseUrl: '',
             supabaseKey: '',
-            transactions: [
-                { id: 1, type: 'gasto', amount: 1000, desc: 'Pago', monthIndex: 5, date: '17 nov 2026', bank: 'Banco Popular' },
-                { id: 2, type: 'gasto', amount: 200, desc: 'Otros', monthIndex: 5, date: '17 nov 2026', bank: 'Efectivo' },
-                { id: 3, type: 'ingreso', amount: 53950, desc: 'Pago al instante BCDRD', monthIndex: 5, date: '2 nov 2026' }
-            ]
+            transactions: []
         };
 
         function saveLocalState() {
@@ -736,13 +723,13 @@
                 amount: amountRD,
                 desc,
                 monthIndex: appState.selectedMonthIndex,
-                date: '17 nov 2026'
+                date: 'Hoy'
             });
 
             saveLocalState();
             closeModal('modal-transaction');
             renderAll();
-            showToast('Guardado en Vaulty');
+            showToast('¡Guardado en Vaulty!');
         }
 
         function deleteTransaction(id) {
@@ -755,8 +742,8 @@
         function openNotificationsModal() { document.getElementById('modal-notifications').classList.remove('hidden'); }
         function openCloudConfigModal() { document.getElementById('modal-cloud').classList.remove('hidden'); }
         function openConnectEmailModal() { document.getElementById('modal-connect-email').classList.remove('hidden'); }
-        function openBudgetModal() { showToast('Módulo de presupuestos activos'); }
-        function openProfileEditModal() { showToast('Perfil Pro Activo'); }
+        function openBudgetModal() { showToast('Módulo de presupuestos'); }
+        function openProfileEditModal() { showToast('Perfil Pro'); }
         function openTransferModal() { showToast(`Transferencias totales: ${formatMoney(appState.transfers)}`); }
 
         function connectBankAction() {
@@ -767,7 +754,16 @@
             }
             closeModal('modal-connect-email');
             renderAll();
-            showToast(`¡${bankName} conectado con éxito!`);
+            showToast(`¡${bankName} conectado!`);
+        }
+
+        function saveSupabaseCredentials() {
+            appState.supabaseUrl = document.getElementById('sb-url-input').value.trim();
+            appState.supabaseKey = document.getElementById('sb-key-input').value.trim();
+            saveLocalState();
+            closeModal('modal-cloud');
+            renderAll();
+            showToast('Credenciales de Supabase guardadas');
         }
 
         function formatMoney(amountRD) {
@@ -781,72 +777,95 @@
             const expTotal = appState.transactions.filter(t => t.type === 'gasto').reduce((a,b)=>a+b.amount,0);
             const incTotal = appState.transactions.filter(t => t.type === 'ingreso').reduce((a,b)=>a+b.amount,0);
 
-            document.getElementById('hero-amount').textContent = formatMoney(appState.period === 'hoy' ? 1200 : expTotal);
+            document.getElementById('hero-amount').textContent = formatMoney(0);
             document.getElementById('month-expense-text').textContent = formatMoney(expTotal);
             document.getElementById('month-income-text').textContent = formatMoney(incTotal);
             document.getElementById('available-amount').textContent = formatMoney(Math.max(0, incTotal - expTotal));
             document.getElementById('transfers-amount').textContent = formatMoney(appState.transfers);
 
+            // Cloud Status Badge
+            if (appState.supabaseUrl) {
+                document.getElementById('cloud-dot').className = 'w-2 h-2 rounded-full bg-emeraldAccent';
+                document.getElementById('cloud-status-text').textContent = 'Nube Activa';
+                document.getElementById('cfg-cloud-desc').textContent = 'Conectado a Supabase';
+            }
+
             // Transacciones de hoy en Inicio
             const todayList = document.getElementById('today-tx-list');
-            todayList.innerHTML = appState.transactions.slice(0, 2).map(t => `
-                <div class="flex justify-between items-center py-2 border-b border-white/5">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-xl bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold text-xs">${t.desc[0]}</div>
-                        <div>
-                            <p class="font-bold text-white text-xs">${t.desc}</p>
-                            <p class="text-[10px] text-gray-400">Cuenta</p>
+            if (appState.transactions.length === 0) {
+                todayList.innerHTML = `<p class="text-xs text-gray-400 py-1">Sin movimientos aún hoy</p>`;
+            } else {
+                todayList.innerHTML = appState.transactions.slice(0, 3).map(t => `
+                    <div class="flex justify-between items-center py-2 border-b border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-xl bg-[#163626] text-emeraldAccent flex items-center justify-center font-bold text-xs">${t.desc[0]}</div>
+                            <div>
+                                <p class="font-bold text-white text-xs">${t.desc}</p>
+                                <p class="text-[10px] text-gray-400">${t.type}</p>
+                            </div>
                         </div>
+                        <span class="font-bold text-xs text-white">${formatMoney(t.amount)}</span>
                     </div>
-                    <span class="font-bold text-xs text-white">${formatMoney(t.amount)}</span>
-                </div>
-            `).join('');
+                `).join('');
+            }
 
             // Cuentas en inicio y en cuentas
             const homeBanks = document.getElementById('home-banks-list');
             const accountsList = document.getElementById('accounts-list');
             
-            homeBanks.innerHTML = appState.connectedBanks.map(b => `
-                <div class="flex items-center justify-between py-1.5">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xs">🏦</div>
-                        <span class="text-xs font-bold text-white">${b}</span>
-                    </div>
-                    <span class="text-[10px] text-emeraldAccent font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full">Activa</span>
-                </div>
-            `).join('');
-
-            accountsList.innerHTML = appState.connectedBanks.map((b, idx) => `
-                <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-2xl bg-white text-black flex items-center justify-center font-extrabold">🏦</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">${b}</p>
-                            <p class="text-xs text-gray-400">eduarlyinoa96@gmail.com</p>
+            if (appState.connectedBanks.length === 0) {
+                homeBanks.innerHTML = `<p class="text-xs text-gray-400">No hay cuentas conectadas</p>`;
+                accountsList.innerHTML = `<p class="text-xs text-gray-400">No hay cuentas agregadas todavía. Conecta una arriba.</p>`;
+                document.getElementById('account-count-badge').textContent = '0 cuentas';
+            } else {
+                document.getElementById('account-count-badge').textContent = `${appState.connectedBanks.length} cuentas`;
+                homeBanks.innerHTML = appState.connectedBanks.map(b => `
+                    <div class="flex items-center justify-between py-1.5">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xs">🏦</div>
+                            <span class="text-xs font-bold text-white">${b}</span>
                         </div>
+                        <span class="text-[10px] text-emeraldAccent font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full">Activa</span>
                     </div>
-                    <button onclick="removeBank('${b}')" class="text-rose-400 hover:text-rose-300">🗑️</button>
-                </div>
-            `).join('');
+                `).join('');
 
-            // Barras Transacciones
+                accountsList.innerHTML = appState.connectedBanks.map((b) => `
+                    <div class="bg-[#111d16] border border-white/[0.06] rounded-[22px] p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-white text-black flex items-center justify-center font-extrabold">🏦</div>
+                            <div>
+                                <p class="font-bold text-white text-sm">${b}</p>
+                                <p class="text-xs text-gray-400">${appState.userEmail}</p>
+                            </div>
+                        </div>
+                        <button onclick="removeBank('${b}')" class="text-rose-400 hover:text-rose-300">🗑️</button>
+                    </div>
+                `).join('');
+            }
+
+            // Gráfico de barras vacío / limpio
             const bars = document.getElementById('bars-container');
-            bars.innerHTML = [120000, 95000, 180000, 210000, 850000, expTotal].map((v, i) => `
+            bars.innerHTML = [0, 0, 0, 0, 0, expTotal].map((v) => `
                 <div class="h-full flex items-end justify-center cursor-pointer">
-                    <div style="height:${Math.max(10, Math.min(100, v/9000))}%;" class="w-3.5 bg-barYellow rounded-t-md"></div>
+                    <div style="height:${Math.max(4, Math.min(100, v/100))}%;" class="w-3.5 bg-barYellow rounded-t-md"></div>
                 </div>
             `).join('');
 
             // Detalle de transacciones
-            document.getElementById('tx-items-list').innerHTML = appState.transactions.map(t => `
-                <div class="flex justify-between items-center py-2 border-b border-white/5">
-                    <span class="text-gray-200 text-xs">${t.desc} (${t.date})</span>
-                    <div class="flex items-center gap-3">
-                        <span class="font-bold text-xs text-barYellow">${formatMoney(t.amount)}</span>
-                        <button onclick="deleteTransaction(${t.id})" class="text-rose-400 text-xs">✕</button>
+            const txItemsList = document.getElementById('tx-items-list');
+            if (appState.transactions.length === 0) {
+                txItemsList.innerHTML = `<p class="text-xs text-gray-400">No hay transacciones registradas</p>`;
+            } else {
+                txItemsList.innerHTML = appState.transactions.map(t => `
+                    <div class="flex justify-between items-center py-2 border-b border-white/5">
+                        <span class="text-gray-200 text-xs">${t.desc} (${t.date})</span>
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-xs text-barYellow">${formatMoney(t.amount)}</span>
+                            <button onclick="deleteTransaction(${t.id})" class="text-rose-400 text-xs">✕</button>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
         function removeBank(b) {
@@ -857,7 +876,7 @@
         }
 
         function resetAllData() {
-            if (confirm('¿Reiniciar Vaulty?')) {
+            if (confirm('¿Seguro que deseas reiniciar todos los registros de Vaulty?')) {
                 localStorage.removeItem('vaulty_v3_state');
                 location.reload();
             }
