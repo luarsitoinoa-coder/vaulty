@@ -1,0 +1,9 @@
+{
+  "name": "Vaulty - Finanzas Personales",
+  "short_name": "Vaulty",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07130d",
+  "theme_color": "#07130d",
+  "orientation": "portrait"
+}
